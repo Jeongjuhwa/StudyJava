@@ -2,7 +2,7 @@
 public class ExGitPush {
 	
 	public static void main(String[] args) {
-		System.out.println("³» ÇÁ·ÎÁ§Æ® µ¹·ÁÁà..");
+		System.out.println("í•œê¸€ ê¹¨ì§ ìˆ˜ì •.");
 	}
 
 }
