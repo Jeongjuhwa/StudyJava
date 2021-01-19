@@ -27,11 +27,10 @@ public class SumWhile {
 		System.out.println("1부터 " + n + "까지의 합은 " + sum + "입니다.");
 
 	}
-	
-	
+
 	/*
 	 * 연습문제 1-6 - > main 함수에서 합 print 하기 전에 i 프린트 하면 n+1의 값임.
 	 * 
 	 */
-	
+
 }
