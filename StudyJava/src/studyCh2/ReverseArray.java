@@ -40,13 +40,5 @@ public class ReverseArray {
 			System.out.println("x[" + i + "]: " + x[i]);
 
 	}
-	
-	/*
-	 * 연습문제 2-2
-	 * 
-	 */
-	static void showReverse() {
-		
-	}
 
 }
