@@ -43,11 +43,11 @@ public class SearchExamination {
 			System.out.print("-");
 		System.out.println();
 
-		int pl = 0; // 검색범위 맨 앞의 index
-		int pr = n - 1; // 검색범위 맨 뒤의 index
+		int pl = 0; 
+		int pr = n - 1; 
 
 		do {
-			int pc = (pl + pr) / 2; // 중앙요소의 index
+			int pc = (pl + pr) / 2; 
 			System.out.print("   |");
 			if (pl != pc)
 				System.out.printf(String.format("%%%ds<-%%%ds+", (pl * 4) + 1, (pc - pl) * 4), "", "");
