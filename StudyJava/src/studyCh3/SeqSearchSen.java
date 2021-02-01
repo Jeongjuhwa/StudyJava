@@ -41,12 +41,30 @@ public class SeqSearchSen {
 		System.out.print("검색할 값: ");
 		int key = sc.nextInt();
 
-		int idx = seqSearchSen(x, num, key);
+		int idx = seqSearchSen2(x, num, key);
 
 		if (idx == -1)
 			System.out.println("그 값의 요소가 없습니다.");
 		else
 			System.out.println(key + "는 x[" + idx + "]에 있습니다.");
+
+	}
+
+	/*
+	 * 연습문제 3-1
+	 * 
+	 */
+
+	static int seqSearchSen2(int[] a, int n, int key) {
+
+		int i = 0;
+		a[n] = key;
+
+		for (i = 0; i <= a.length; i++)
+			if (a[i] == key)
+				break;
+
+		return i == n ? -1 : i;
 
 	}
 

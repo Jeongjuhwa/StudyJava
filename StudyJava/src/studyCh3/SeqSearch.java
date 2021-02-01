@@ -51,13 +51,42 @@ public class SeqSearch {
 		System.out.print("검색할 값: ");
 		int key = sc.nextInt();
 
-		int idx = seqSearch(x, num, key);
+		int idx = seqSearch3(x, num, key);
 
 		if (idx == -1)
 			System.out.println("그 값의 요소가 없습니다.");
 		else
 			System.out.println(key + "는 x[" + idx + "]에 있습니다.");
 
+	}
+	
+	/*
+	 * 연습문제 3-2
+	 * 
+	 */
+
+	static int seqSearch3(int a[], int n, int key) {
+		System.out.print("  | ");
+		for (int k = 0; k < n; k++)
+			System.out.printf("   %d", k);
+		System.out.println();
+		for (int k = 0; k < 4 * n + 2; k++)
+			System.out.printf("-"); // 4*n + 2 번 출력
+		int i;
+		// n줄
+		for (i = 0; i <= n; i++) {
+			if (i == n)
+				break;
+			System.out.println();
+			System.out.printf(String.format("   %%%ds*\n", (i * 4) + 3), "");
+			System.out.printf("%2d|", i);
+			for (int k = 0; k < n; k++)
+				System.out.printf("%4d", a[k]);
+			if (a[i] == key)
+				break;
+		}
+		System.out.println();
+		return i == n ? -1 : i;
 	}
 
 }

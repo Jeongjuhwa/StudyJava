@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class BinSearch {
 
 	/*
-	 * 실습 3-3 이진 검색
+	 * 실습 3-4 이진 검색
 	 * 
 	 */
 
