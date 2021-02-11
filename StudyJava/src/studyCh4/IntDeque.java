@@ -156,10 +156,7 @@ public class IntDeque {
 		}
 	}
 
-	/*
-	 * 연습문제 4-5 -> 임의의 데이터를 검색하는 메서드 추가. 인덱스가 아닌 몇번째에 있는가를 반환. front -> 1 / 실패는 0 반환
-	 * 
-	 */
+	
 
 	public int search(int x) {
 		int cnt = 0;
