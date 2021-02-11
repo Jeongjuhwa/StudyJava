@@ -156,8 +156,6 @@ public class IntDeque {
 		}
 	}
 
-	
-
 	public int search(int x) {
 		int cnt = 0;
 		for (int i = 0; i < num; i++) {
