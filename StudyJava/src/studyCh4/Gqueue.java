@@ -1,49 +1,44 @@
 package studyCh4;
 
 /*
- * 실습 4-3[A] -> 링 버퍼로 que 구현
+ * 연습문제 4-6 -> 제너릭 큐 클래스 만들기
  * 
  */
 
-public class IntQueue {
+public class Gqueue<E> {
 
-	private int max; // 큐의 용량
-	private int num; // 현재 데이터 수
-	private int[] que; // 큐 본체
-	private int front; // 첫 번째 요소 커서
-	private int rear; // 마지막 요소 커서
+	private int max;
+	private int num;
+	private int front;
+	private int rear;
+	private E[] que;
 
-	// 실행 시 예외 -> 빈 큐
-	public class EmptyIntQueueException extends RuntimeException {
-		public EmptyIntQueueException() {
+	// 실행 시 예외 -> 빈 스택 -> 제네릭 클래스는 Throwable 객체 상속 x
+	public static class EmptyGqueueException extends RuntimeException {
+		public EmptyGqueueException() {
 		}
 	}
 
-	// 실행 시 예외 -> 가득 찬 큐
-	public class OverflowIntQueueException extends RuntimeException {
-		public OverflowIntQueueException() {
+	// 실행 시 예외 -> 가득 찬 스택
+	public static class OverflowGqueueException extends RuntimeException {
+		public OverflowGqueueException() {
 		}
 	}
 
-	public IntQueue(int capacity) {
+	public Gqueue(int capacity) {
 
 		this.max = capacity;
 		this.num = front = rear = 0;
 		try {
-			que = new int[max]; // 큐 본체용 배열 생성
+			que = (E[]) new Object[max]; // 큐 본체용 배열 생성
 		} catch (OutOfMemoryError e) { // 예외처리 -> 생성 x
 			max = 0;
 		}
 	}
 
-	/*
-	 * 실습 4-3[B] -> 큐에 데이터 삽입
-	 * 
-	 */
-
-	public int enque(int x) throws OverflowIntQueueException {
+	public E enque(E x) throws OverflowGqueueException {
 		if (num >= max)
-			throw new OverflowIntQueueException();
+			throw new OverflowGqueueException();
 
 		que[rear++] = x;
 		num++;
@@ -53,15 +48,11 @@ public class IntQueue {
 
 	}
 
-	/*
-	 * 실습 4-3[C] -> 큐에서 데이터 꺼내기
-	 * 
-	 */
-	public int deque() throws EmptyIntQueueException {
+	public E deque() throws EmptyGqueueException {
 		if (num <= 0)
-			throw new EmptyIntQueueException();
+			throw new EmptyGqueueException();
 
-		int x = que[front++];
+		E x = que[front++];
 		num--;
 		if (front == max)
 			front = 0;
@@ -69,15 +60,10 @@ public class IntQueue {
 
 	}
 
-	/*
-	 * 실습 4-3[D] -> 큐에서 데이터를 피크(들려다 봄)
-	 * 
-	 */
-
-	public int peek() throws EmptyIntQueueException {
+	public E peek() throws EmptyGqueueException {
 
 		if (num <= 0)
-			throw new EmptyIntQueueException();
+			throw new EmptyGqueueException();
 
 		return que[front];
 
@@ -85,7 +71,7 @@ public class IntQueue {
 
 	// 큐에서 x를 검색하여 인덱스 리턴 ( 없으면 -1 리턴)
 
-	public int indexOf(int x) {
+	public int indexOf(E x) {
 
 		for (int i = 0; i < num; i++) {
 			int idx = (i + front) % max;
@@ -134,12 +120,7 @@ public class IntQueue {
 		}
 	}
 
-	/*
-	 * 연습문제 4-5 -> 임의의 데이터를 검색하는 메서드 추가. 인덱스가 아닌 몇번째에 있는가를 반환. front -> 1 / 실패는 0 반환
-	 * 
-	 */
-
-	public int search(int x) {
+	public int search(E x) {
 		int cnt = 0;
 		for (int i = 0; i < num; i++) {
 			int idx = (i + front) % max;
