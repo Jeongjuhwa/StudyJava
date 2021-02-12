@@ -10,7 +10,7 @@ import studyCh4.IntStack;
  */
 
 public class Recur {
-	
+
 	/*
 	 * 실습 5-4 -> 실습 5-3의 메서드 꼬리재귀 제거
 	 * 
@@ -30,12 +30,12 @@ public class Recur {
 			recur(n - 2);
 		}
 	}
-	
+
 	/*
 	 * 실습 5-5 -> 실습 5-3의 메서드 꼬리재귀 제거(모든 재귀 제거)
 	 * 
 	 */
-	
+
 	static void recur4(int n) {
 
 		IntStack s = new IntStack(n);
@@ -56,7 +56,7 @@ public class Recur {
 			break;
 
 		}
-		
+
 	}
 
 	/*
@@ -80,6 +80,52 @@ public class Recur {
 		 * 
 		 * 하향식 -> 노트에 그림으로 실습
 		 */
+		
+		
+		
+	}
+	/*
+	 * 연습문제 5-5 -> 메서드를 비재귀적으로 구현
+	 * 
+	 */
+	static void recur5(int n) {
+		if(n>0) {
+			recur(n-1);
+			recur(n-2);
+			System.out.println(n);
+		}
+	}
+
+	static void noRecur5(int n) {
+		int[] nstack = new int[100];
+		int[] sstack = new int[100];
+		int ptr = -1;
+		int sw = 0; // sw = 0 재귀문 실행 안된 상태 , 1 = 첫 번째 재귀문이 처리 완료, 2 = 두번째 재귀문도 처리완료
+
+		while (true) {
+			if (n > 0) {
+				ptr++;
+				nstack[ptr] = n;
+				sstack[ptr] = sw;
+
+				if (sw == 0)
+					n = n - 1;
+				else if (sw == 1) {
+					n -= 2;
+					sw = 0;
+				}
+				continue;
+			}
+			do {
+				n = nstack[ptr];
+				sw = sstack[ptr--] + 1;
+				if (sw == 2) {
+					System.out.println(n);
+					if (ptr < 0)
+						return;
+				}
+			} while (sw == 2);
+		}
 	}
 
 	public static void main(String[] args) {
@@ -87,7 +133,7 @@ public class Recur {
 		System.out.print("정수: ");
 		int x = sc.nextInt();
 
-		recur2(x);
+		noRecur5(x);
 	}
 
 }
