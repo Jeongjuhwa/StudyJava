@@ -41,7 +41,7 @@ public class BubbleSort {
 	 * 
 	 */
 
-	static void detailBubbleSort(int[] a, int n) {
+	static void printBubbleSort(int[] a, int n) {
 		int ccnt = 0; // 비교 횟수
 		int scnt = 0; // 교환 횟수
 
@@ -82,7 +82,7 @@ public class BubbleSort {
 
 		}
 
-		detailBubbleSort(x, n);
+		printBubbleSort(x, n);
 
 		System.out.println("오름차순 역버블정렬완료");
 		for (int i = 0; i < x.length; i++)
