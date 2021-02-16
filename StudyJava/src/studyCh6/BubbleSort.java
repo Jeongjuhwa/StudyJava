@@ -15,7 +15,7 @@ public class BubbleSort {
 		a[idx2] = t;
 	}
 
-	// 버블정렬
+	// 버블정렬 ver1
 	static void bubbleSort(int[] a, int n) {
 		for (int i = 0; i < n - 1; i++)
 			for (int j = n - 1; j > i; j--)
@@ -23,6 +23,62 @@ public class BubbleSort {
 					swap(a, j, j - 1);
 
 	}
+
+	/*
+	 * 실습 6-2 -> 버블 정렬(ver.2)
+	 * 
+	 */
+	static void bubbleSortVer2(int[] a, int n) {
+		for (int i = 0; i < n - 1; i++) {
+			int exchg = 0; // 패스의 교환 횟수 기록
+			for (int j = n - 1; j > i; j--)
+				if (a[j - 1] > a[j]) {
+					swap(a, j, j - 1);
+					exchg++;
+				}
+			if (exchg == 0)
+				break;
+		}
+
+	}
+
+	/*
+	 * 연습문제 6-# -> 버블정렬 자세히 출력ver2 ( 교환 수행은 +로 표시 수행x는 -로 표시
+	 * 
+	 */
+
+	static void printBubbleSortVer2(int[] a, int n) {
+
+		int ccnt = 0; // 비교횟수
+		int scnt = 0; // 교환횟수
+
+		for (int i = 0; i < n - 1; i++) {
+			int exchg = 0;
+			System.out.printf("패스%d：\n", i + 1);
+			for (int j = n - 1; j > i; j--) {
+				for (int m = 0; m < n - 1; m++)
+					System.out.printf("%3d %c", a[m], (m != j - 1) ? ' ' : (a[j - 1] > a[j]) ? '+' : '-');
+				System.out.printf("%3d\n", a[n - 1]);
+
+				ccnt++;
+
+				if (a[j - 1] > a[j]) {
+					swap(a, j - 1, j);
+					exchg++;
+					scnt++;
+				}
+
+			}
+			for (int m = 0; m < n; m++)
+				System.out.printf("%3d  ", a[m]);
+			System.out.println();
+			if (exchg == 0)
+				break;
+		}
+		System.out.println("비교를 " + ccnt + "회 했습니다.");
+		System.out.println("교환을 " + scnt + "회 했습니다.");
+	}
+
 	/*
 	 * 연습문제 6-1 -> 버블정렬 역순
 	 * 
@@ -82,7 +138,7 @@ public class BubbleSort {
 
 		}
 
-		printBubbleSort(x, n);
+		printBubbleSortVer2(x, n);
 
 		System.out.println("오름차순 역버블정렬완료");
 		for (int i = 0; i < x.length; i++)
