@@ -43,7 +43,82 @@ public class BubbleSort {
 	}
 
 	/*
-	 * 연습문제 6-# -> 버블정렬 자세히 출력ver2 ( 교환 수행은 +로 표시 수행x는 -로 표시
+	 * 실습 6-3 -> 버블 정렬(ver.3)
+	 * 
+	 */
+	static void bubbleSortVer3(int[] a, int n) {
+		int k = 0; // a[k]보다 앞쪽은 정렬 마침
+		while (k < n - 1) {
+			int last = n - 1; // 마지막으로 요소를 교환한 위치
+			for (int j = n - 1; j > k; j--)
+				if (a[j - 1] > a[j]) {
+					swap(a, j - 1, j);
+					last = j;
+				}
+			k = last;
+		}
+
+	}
+
+	/*
+	 * 연습문제 6-5 -> 셰이커정렬
+	 * 
+	 */
+	static void shakerSort(int[] a, int n) {
+		int left = 0;
+		int right = n - 1;
+		int last = right;
+
+		while (left < right) {
+			for (int j = right; j > left; j--) {
+				if (a[j - 1] > a[j]) {
+					swap(a, j - 1, j);
+					last = j;
+				}
+			}
+			left = last;
+
+			for (int j = left; j < right; j++) {
+				if (a[j] > a[j + 1]) {
+					swap(a, j, j + 1);
+					last = j;
+				}
+			}
+			right = last;
+		}
+	}
+
+	/*
+	 * 연습문제 6-4 -> 버블정렬 자세히 출력ver3 ( 교환 수행은 +로 표시 수행x는 -로 표시)
+	 * 
+	 */
+	static void printBubbleSortVer3(int[] a, int n) {
+		int ccnt = 0;
+		int scnt = 0;
+		int k = 0;
+		int i = 0;
+		while (k < n - 1) {
+			System.out.printf("패스%d：\n", i++);
+			int last = n - 1; // 마지막으로 요소를 교환한 위치
+			for (int j = n - 1; j > k; j--) {
+				for (int m = 0; m < n - 1; m++)
+					System.out.printf("%3d %c", a[m], (m != j - 1) ? ' ' : (a[j - 1] > a[j]) ? '+' : '-');
+				System.out.printf("%3d\n", a[n - 1]);
+				ccnt++;
+				if (a[j - 1] > a[j]) {
+					swap(a, j - 1, j);
+					last = j;
+				}
+			}
+			k = last;
+		}
+		System.out.println("비교를 " + ccnt + "회 했습니다.");
+		System.out.println("교환를 " + scnt + "회 했습니다.");
+
+	}
+
+	/*
+	 * 연습문제 6-3 -> 버블정렬 자세히 출력ver2 ( 교환 수행은 +로 표시 수행x는 -로 표시)
 	 * 
 	 */
 
@@ -138,7 +213,7 @@ public class BubbleSort {
 
 		}
 
-		printBubbleSortVer2(x, n);
+		shakerSort(x, n);
 
 		System.out.println("오름차순 역버블정렬완료");
 		for (int i = 0; i < x.length; i++)
